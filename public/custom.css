@@ -1,0 +1,52 @@
+/*Start css for image lider*/
+.library-section {
+    /*max-height: 544px;
+    overflow: auto;
+    overflow-x: hidden;*/
+}
+.library-section .library-nav{
+    max-height: 50px;
+    top: 0;
+    z-index: 9;
+    visibility: hidden;
+    opacity: 0;
+    transition: all ease-in-out 0.3s;
+}
+.library-section:hover .library-nav{
+    visibility: visible;
+    opacity: 1;
+}
+.library-section .library-nav .btn,
+.library-section .library-nav a{
+    font-size: 1.5rem;
+}
+.library-section .library-nav .image-count input{
+    width: 28px;
+    height: 25px;
+}
+.library-section .library-content{
+    margin-top: -50px;
+}
+/*End css for image lider*/
+
+/*Start css for index.html*/
+/*.content-main{
+    flex: 1;
+}*/
+.content-left{
+    background-color: red;
+    flex: 0 0 200px;
+}
+.content-right{
+    background-color: blue;
+    flex: 0 0 100px;
+}
+/*.content-left,
+.content-right{
+    flex: 0 0 200px;
+}*/
+.content-main{
+/*    flex: 1;*/
+    overflow: hidden;
+}
+/*End css for index.html*/

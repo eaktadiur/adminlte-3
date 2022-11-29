@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PDF Annotation And Drawing Markup Plugin Example</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css" />
+    </head>
+    <body>
+        <button onclick="onClick()">Click</button>
+        <button onclick="onLoad()">Load</button>
+        <canvas class="fabric" id="c"></canvas>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.js"></script>
+        <script>
+            var p;
+            var canvas = new fabric.Canvas("c", {
+                width: window.innerWidth,
+                height: window.innerHeight,
+                isDrawingMode: false,
+            });
+            var x, y;
+
+            canvas.on("mouse:down", function (options) {
+                x = options.e.clientX;
+                y = options.e.clientY;
+
+                // var rect = new fabric.Rect({
+                //     left: options.e.clientX,
+                //     top: options.e.clientY,
+                //     width: 100,
+                //     height: 100,
+                //     fill: "#212121",
+                //     stroke: "#000000",
+                //     strokeSize: 2,
+                // });
+                // canvas.add(rect);
+
+                // console.log(options.e.clientX, options.e.clientY);
+
+                if (options.target) {
+                    console.log("an object was clicked! ", options.target.type);
+                }
+            });
+
+            canvas.on("mouse:up", function (options) {
+                right = options.e.clientX;
+                bottom = options.e.clientY;
+
+                var rect = new fabric.Rect({
+                    left: x,
+                    top: y,
+                    width: options.e.clientX - x,
+                    height: options.e.clientY - y,
+                    fill: "#212121",
+                    stroke: "#000000",
+                    strokeSize: 2,
+                });
+                canvas.add(rect);
+
+                // console.log(options.e.clientX, options.e.clientY);
+                console.log(x, options.e.clientX, y, options.e.clientY);
+
+                if (options.target) {
+                    console.log("an object was clicked! ", options.target.type);
+                }
+            });
+
+            // var canvas = new fabric.Canvas("c");
+
+            // create a rectangle object
+            var rect = new fabric.Rect({
+                left: 100,
+                top: 100,
+                fill: "red",
+                width: 20,
+                height: 20,
+            });
+
+            // "add" rectangle onto canvas
+            // canvas.add(rect);
+
+            function onClick() {
+                p = JSON.stringify(canvas);
+                console.log(p);
+                canvas.clear();
+            }
+
+            function onLoad() {
+                canvas.loadFromJSON(p);
+            }
+        </script>
+    </body>
+
+    <style>
+        .fabric {
+            border: 2px solid rgb(237, 26, 26);
+        }
+    </style>
+</html>
